@@ -3,13 +3,15 @@ require 'spec_helper'
 describe DNANucleotide do
   let(:nucleotide) { DNANucleotide.new('AGCTTTTCATTCTGAC') }
 
+  it 'should inherit from Nucleotide' do
+    expect(nucleotide.class.superclass).to be Nucleotide
+  end
+
   describe '#sequence' do
     it 'should return AGCTTTTCATTCTGAC as its sequence' do
       expect(nucleotide.sequence).to eql('AGCTTTTCATTCTGAC')
     end
   end
-
-  it 'should validate `sequence`'
 
   describe '#frequencies' do
     it 'should return a Hash with nucleotides as keys and their count as values' do

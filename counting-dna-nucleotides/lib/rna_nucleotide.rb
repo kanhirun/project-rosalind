@@ -1,7 +1,7 @@
 require_relative 'custom_errors/validation_error'
 
 
-class RNANucleotide
+class RNANucleotide < Nucleotide
   def initialize(sequence)
     if is_valid?(sequence)
       @sequence = sequence

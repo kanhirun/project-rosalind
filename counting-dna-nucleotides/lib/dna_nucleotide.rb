@@ -1,4 +1,4 @@
-class DNANucleotide
+class DNANucleotide < Nucleotide
   attr_accessor :sequence
 
   def initialize(sequence)
