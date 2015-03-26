@@ -22,7 +22,7 @@ describe Nucleotide do
   it 'should validate `sequence`'
 
   describe '#frequencies' do
-    xit 'should return a Hash with nucleotides as keys and their count as values' do
+    it 'should return a Hash with nucleotides as keys and their count as values' do
       results = nucleotide.frequencies()
 
       expect(results).to eql({A: 3, C: 4, T: 7, G: 2})
