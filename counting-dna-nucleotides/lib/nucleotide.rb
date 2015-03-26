@@ -21,7 +21,7 @@ class Nucleotide
 
   def is_valid?(sequence)
     results = sequence.split("").all? do |base|
-      base == "A" || base == "C" || base == "T" || base == "G"
+      base == "A" || base == "C" || base == "T" || base == "G" || base == "U"
     end
   end
 end
