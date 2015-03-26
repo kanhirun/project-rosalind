@@ -1,0 +1,1 @@
+gem 'factory_girl', '~> 4.5.0'
