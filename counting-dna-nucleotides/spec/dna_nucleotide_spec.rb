@@ -1,12 +1,10 @@
 require 'spec_helper'
 
-describe Nucleotide do
-  let(:nucleotide) { Nucleotide.new('AGCTTTTCATTCTGAC') }
+describe DNANucleotide do
+  let(:nucleotide) { DNANucleotide.new('AGCTTTTCATTCTGAC') }
 
   describe '#sequence' do
     it 'should return AGCTTTTCATTCTGAC as its sequence' do
-      nucleotide = Nucleotide.new('AGCTTTTCATTCTGAC')
-
       expect(nucleotide.sequence).to eql('AGCTTTTCATTCTGAC')
     end
   end
