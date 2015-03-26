@@ -7,6 +7,16 @@ describe Nucleotide do
     expect(nucleotide.sequence).to eql 'GATGGAACTTGACTACGTAAATT'
   end
 
+  describe '#to_s' do
+    it 'should return the original sequence' do
+      sequence_1 = 'GATGGAACTTGACTACGTAAATT'
+      sequence_2 = 'GATGGAACTTGA'
+
+      expect( Nucleotide.new(sequence_1).to_s ).to eql sequence_1
+      expect( Nucleotide.new(sequence_2).to_s ).to eql sequence_2
+    end
+  end
+
   describe 'validations' do
     describe 'length' do
       it 'should return instance if sequence < 1000' do

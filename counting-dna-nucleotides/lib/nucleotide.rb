@@ -13,7 +13,11 @@ class Nucleotide
     if !is_valid?(sequence)
       raise ValidationError
     end
-  end
+ end
+
+ def to_s
+  sequence
+ end
 
   def is_valid?(sequence)
     results = sequence.split("").all? do |base|
