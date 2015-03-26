@@ -7,6 +7,10 @@ describe DNANucleotide do
     expect(nucleotide.class.superclass).to be Nucleotide
   end
 
+  it 'should have a BASES class variable that includes A, C, T, and G' do
+    expect(DNANucleotide::BASES).to include('A', 'C', 'T', 'G')
+  end
+
   describe '#frequencies' do
     it 'should return a hash containing the `bases` as keys and their number of occurrences within the `sequence` as values' do
       n1 = DNANucleotide.new('GATGGAACTTGACTACGTAAATT')
@@ -14,6 +18,49 @@ describe DNANucleotide do
 
       expect(n1.frequencies).to eql({A: 8, C: 3, T: 7, G: 5})
       expect(n2.frequencies).to eql({A: 1, C: 3, T: 1, G: 1})
+    end
+  end
+
+  describe '#compliment_by_base' do
+    it 'should respond to `compliment_by_base`' do
+      expect(nucleotide.respond_to?(:compliment_by_base)).to be true
+    end
+
+    it 'should return a InvalidBaseError if argument is not either A, C, T, or G' do
+      expect{ nucleotide.compliment_by_base("O") }.to raise_error do |error|
+        expect(error).to be_a InvalidBaseError
+      end
+
+      expect{ nucleotide.compliment_by_base("A") }.not_to raise_error
+      expect{ nucleotide.compliment_by_base("C") }.not_to raise_error
+      expect{ nucleotide.compliment_by_base("T") }.not_to raise_error
+      expect{ nucleotide.compliment_by_base("G") }.not_to raise_error
+    end
+
+    it 'should return an InvalidLengthError if argument length is greater than 1'
+
+    it 'should return A if given T' do
+      compliment = nucleotide.compliment_by_base('T')
+
+      expect(compliment).to eql 'A'
+    end
+
+    it 'should return T if given A' do
+      compliment = nucleotide.compliment_by_base('A')
+
+      expect(compliment).to eql 'T'
+    end
+
+    it 'should return C if given G' do
+      compliment = nucleotide.compliment_by_base('G')
+
+      expect(compliment).to eql 'C'
+    end
+
+    it 'should return G if given C' do
+      compliment = nucleotide.compliment_by_base('C')
+
+      expect(compliment).to eql 'G'
     end
   end
 end

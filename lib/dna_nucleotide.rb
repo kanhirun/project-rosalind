@@ -1,6 +1,10 @@
 require_relative 'nucleotide'
+require_relative 'custom_errors/invalid_base_error'
+
 
 class DNANucleotide < Nucleotide
+  BASES = ['A', 'C', 'T', 'G']
+
   def frequencies
     results = { A: 0,
                 C: 0,
@@ -12,6 +16,22 @@ class DNANucleotide < Nucleotide
     end
 
     return results
+  end
+
+  # def compliment_by_sequence(sequence)
+  # end
+
+  def compliment_by_base(base)
+    raise InvalidBaseError if !BASES.include?(base)
+
+    map = {
+      A: 'T',
+      T: 'A',
+      G: 'C',
+      C: 'G'
+    }
+
+    return map[base.to_sym]
   end
 end
 
