@@ -20,3 +20,17 @@ class Nucleotide
     return results
   end
 end
+
+
+class NucleotideHelper
+  def print_frequencies(frequencies_struct)
+    a = frequencies_struct[:A]
+    c = frequencies_struct[:C]
+    t = frequencies_struct[:T]
+    g = frequencies_struct[:G]
+
+    results = [a, c, g, t].map(&:to_s).join(" ")
+
+    print results
+  end
+end
