@@ -1,23 +1,25 @@
 class Nucleotide
   attr_accessor :sequence
 
+  SEQUENCE_LIMIT = 1_000
+
+  # A sequence is a string of bases, where a base is character
+  # that is either A, C, T, or G.
   def initialize(sequence)
-    # A sequence is a string of bases, where a base is character
-    # that is either A, C, T, or G.
     @sequence = sequence
 
-    if sequence.length > 1_000
+    if @sequence.length > SEQUENCE_LIMIT
       raise ValidationError
     end
 
     if !is_valid?(sequence)
       raise ValidationError
     end
- end
+  end
 
- def to_s
-  sequence
- end
+  def to_s
+    sequence
+  end
 
   def is_valid?(sequence)
     results = sequence.split("").all? do |base|

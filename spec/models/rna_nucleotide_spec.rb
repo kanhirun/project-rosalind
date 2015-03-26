@@ -9,11 +9,11 @@ describe RNANucleotide do
 
   describe '#transcribe' do
     it 'return the sequence with Ts replaced with Us' do
-      results_1 = nucleotide.transcribe('GATGGAACTTGACTACGTAAATT')
-      results_2 = nucleotide.transcribe('CATGGAACT')
+      s1 = nucleotide.transcribe('GATGGAACTTGACTACGTAAATT')
+      s2 = nucleotide.transcribe('CATGGAACT')
 
-      expect(results_1).to eql 'GAUGGAACUUGACUACGUAAAUU'
-      expect(results_2).to eql 'CAUGGAACU'
+      expect(s1).to eql 'GAUGGAACUUGACUACGUAAAUU'
+      expect(s2).to eql 'CAUGGAACU'
     end
   end
 end

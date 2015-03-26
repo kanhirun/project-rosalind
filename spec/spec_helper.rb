@@ -1,17 +1,16 @@
 # Require models here.
-require 'factory_girl'
-require_relative '../lib/nucleotide'
-require_relative '../lib/dna_nucleotide'
-require_relative '../lib/rna_nucleotide'
+Dir.glob(File.expand_path('../../lib/*.rb', __FILE__)) do |model|
+  require model
+end
 
+# Require factories here.
+require 'factory_girl'
+Dir.glob(File.expand_path('../factories/*.rb', __FILE__)) do |factory|
+  require factory
+end
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
-
-  config.before(:suite) do
-    # Ensures that all factories are valid before testing begins.
-    FactoryGirl.lint
-  end
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

@@ -1,3 +1,5 @@
+require_relative 'nucleotide'
+
 class DNANucleotide < Nucleotide
   def frequencies
     results = { A: 0,
