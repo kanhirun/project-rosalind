@@ -1,5 +1,6 @@
 # Require models here.
 require_relative '../lib/dna_nucleotide'
+require_relative '../lib/rna_nucleotide'
 
 
 RSpec.configure do |config|
