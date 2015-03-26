@@ -7,12 +7,6 @@ describe DNANucleotide do
     expect(nucleotide.class.superclass).to be Nucleotide
   end
 
-  describe '#sequence' do
-    it 'should return AGCTTTTCATTCTGAC as its sequence' do
-      expect(nucleotide.sequence).to eql('AGCTTTTCATTCTGAC')
-    end
-  end
-
   describe '#frequencies' do
     it 'should return a Hash with nucleotides as keys and their count as values' do
       results = nucleotide.frequencies()
