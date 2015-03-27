@@ -59,14 +59,14 @@ describe DNANucleotide do
       s1 = "ACTTTG"
       d1 = DNANucleotide.new(s1)
 
-      s2 = "TGGAACCCC"
+      s2 = "AAAACCCGGT"
       d2 = DNANucleotide.new(s2)
 
       c1 = d1.compliment_by_sequence(s1)
       c2 = d2.compliment_by_sequence(s2)
 
       expect(c1).to eql "CAAAGT"
-      expect(c2).to eql "GGGGTTCCA"
+      expect(c2).to eql "ACCGGGTTTT"
     end
 
     it 'should respond to `compliment_by_sequence` message' do
