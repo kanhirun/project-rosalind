@@ -19,8 +19,11 @@ class DNANucleotide < Nucleotide
     return results
   end
 
-  # def compliment_by_sequence(sequence)
-  # end
+  def compliment_by_sequence(sequence)
+    sequence.each_char.map do |base|
+      compliment_by_base(base)
+    end.join.reverse
+  end
 
   def compliment_by_base(base)
     raise InvalidBaseError if !BASES.include?(base)

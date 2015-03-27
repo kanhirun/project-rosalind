@@ -11,16 +11,6 @@ describe DNANucleotide do
     expect(DNANucleotide::BASES).to include('A', 'C', 'T', 'G')
   end
 
-  describe '#frequencies' do
-    it 'should return a hash containing the `bases` as keys and their number of occurrences within the `sequence` as values' do
-      n1 = DNANucleotide.new('GATGGAACTTGACTACGTAAATT')
-      n2 = DNANucleotide.new('ACCCTG')
-
-      expect(n1.frequencies).to eql({A: 8, C: 3, T: 7, G: 5})
-      expect(n2.frequencies).to eql({A: 1, C: 3, T: 1, G: 1})
-    end
-  end
-
   describe '#compliment_by_base' do
     it 'should respond to `compliment_by_base`' do
       expect(nucleotide.respond_to?(:compliment_by_base)).to be true
@@ -61,6 +51,54 @@ describe DNANucleotide do
       compliment = nucleotide.compliment_by_base('C')
 
       expect(compliment).to eql 'G'
+    end
+  end
+
+  describe '#compliment_by_sequence' do
+    it 'should return the reversed, complimentary sequence' do
+      s1 = "ACTTTG"
+      d1 = DNANucleotide.new(s1)
+
+      s2 = "TGGAACCCC"
+      d2 = DNANucleotide.new(s2)
+
+      c1 = d1.compliment_by_sequence(s1)
+      c2 = d2.compliment_by_sequence(s2)
+
+      expect(c1).to eql "CAAAGT"
+      expect(c2).to eql "GGGGTTCCA"
+    end
+
+    it 'should respond to `compliment_by_sequence` message' do
+      expect(nucleotide.respond_to?(:compliment_by_sequence)).to be true
+    end
+
+    it 'should receive `compliment_by_base` the same number of times as the sequence length' do
+      # setup
+      sequence = 'ACCTTTG'
+      expect(sequence.length).to eql 7
+
+      expect(nucleotide).to receive(:compliment_by_base).exactly(7).times  # verification
+
+      nucleotide.compliment_by_sequence(sequence)  # exercise
+    end
+
+    it 'should return the reversed, compliment sequence' do
+      n1 = Nucleotide.new('ACTTTG')
+      n2 = Nucleotide.new('ATTCCGGA')
+    end
+
+    it 'should return InvalidSequenceError if sequence is not valid'
+    it 'should return InvalidLengthError if sequence is greater than the limit'
+  end
+
+  describe '#frequencies' do
+    it 'should return a hash containing the `bases` as keys and their number of occurrences within the `sequence` as values' do
+      n1 = DNANucleotide.new('GATGGAACTTGACTACGTAAATT')
+      n2 = DNANucleotide.new('ACCCTG')
+
+      expect(n1.frequencies).to eql({A: 8, C: 3, T: 7, G: 5})
+      expect(n2.frequencies).to eql({A: 1, C: 3, T: 1, G: 1})
     end
   end
 end
