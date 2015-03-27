@@ -4,6 +4,7 @@ require_relative 'custom_errors/invalid_base_error'
 
 class DNANucleotide < Nucleotide
   BASES = ['A', 'C', 'T', 'G']
+  COMPLIMENT_BASES = { A: 'T', T: 'A', G: 'C', C: 'G' }
 
   def frequencies
     results = { A: 0,
@@ -18,20 +19,16 @@ class DNANucleotide < Nucleotide
     return results
   end
 
-  # def compliment_by_sequence(sequence)
-  # end
+  def compliment_by_sequence(sequence)
+    sequence.each_char.map do |base|
+      compliment_by_base(base)
+    end.join.reverse
+  end
 
   def compliment_by_base(base)
     raise InvalidBaseError if !BASES.include?(base)
 
-    map = {
-      A: 'T',
-      T: 'A',
-      G: 'C',
-      C: 'G'
-    }
-
-    return map[base.to_sym]
+    return COMPLIMENT_BASES[base.to_sym]
   end
 end
 
